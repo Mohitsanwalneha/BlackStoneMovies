@@ -19,7 +19,7 @@ namespace BlackStoneMovies.Controllers
                 return RedirectToAction("Login", "Admin");
             }
             List<Movy> m = new List<Movy>();
-            client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
+            client.BaseAddress = new Uri("http://localhost:63540/api/CustomerApi");
             var response = client.GetAsync("CustomerApi/GetMovies");
             response.Wait();
             var test = response.Result;
