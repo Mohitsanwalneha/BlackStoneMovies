@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BlackStoneMovies.Models.Movy>
+
+@{
+    ViewBag.Title = "GetMovies";
+}
+
+<h2>GetMovies</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MDirector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MProducer)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MDirector)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MProducer)
+        </td>
+    </tr>
+}
+
+</table>
