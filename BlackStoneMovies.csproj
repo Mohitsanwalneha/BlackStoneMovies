@@ -572,6 +572,9 @@
     <Content Include="Views\Customer\GetMovies.cshtml" />
     <Content Include="Views\Customer\BookTicket.cshtml" />
     <Content Include="Views\Customer\GetAvailableShows.cshtml" />
+    <Content Include="Views\Admin\AddMovie.cshtml" />
+    <Content Include="Views\Admin\UpdateMovie.cshtml" />
+    <Content Include="Views\Admin\DeleteMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

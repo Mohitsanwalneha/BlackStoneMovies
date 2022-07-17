@@ -7,7 +7,7 @@
 <h2>AllMovies</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Movie", "AddMovies")
 </p>
 <table class="table">
     <tr>
@@ -35,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.MProducer)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MId })
+            @Html.ActionLink("Edit", "UpdateMovie", new { id=item.MId }) |
+            @Html.ActionLink("Shows", "AllShows", new { id=item.MId }) |
+            @Html.ActionLink("Delete", "DeleteMovie", new { id=item.MId })
         </td>
     </tr>
 }

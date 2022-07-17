@@ -63,5 +63,37 @@ namespace BlackStoneMovies.Controllers
             }
             return Ok(q);
         }
+        [HttpPost]
+        public IHttpActionResult AddMovie(Movy mo)
+        {
+            var ec = db.Movies.Where(m => m.MDirector == mo.MDirector && m.MName ==mo.MName );
+            if (ec.Count() > 0)
+                return NotFound();
+            db.Movies.Add(mo);
+            db.SaveChanges();
+            return Ok();
+        }
+        [HttpGet]
+        public IHttpActionResult UpdateMovie(int id)
+        {
+            var ex=db.Movies.Where(m=>m.MId==id).FirstOrDefault();
+            return Ok(ex);
+        }
+        [HttpPut]
+        public IHttpActionResult UpdateMovie( Movy mo)
+        {
+            db.Entry(mo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return Ok();
+           
+        }
+        [HttpDelete]
+        public IHttpActionResult DeleteMovie(int id)
+        {
+            var Ex = db.Movies.Where(m => m.MId == id).FirstOrDefault();
+            db.Entry(Ex).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
