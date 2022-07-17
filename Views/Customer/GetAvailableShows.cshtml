@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BlackStoneMovies.Models.GetShow>
+@{
+    ViewBag.Title = "GetAvailableShows";
+}
+
+
+<h2>GetAvailableShows</h2>
+<h5 class="text-danger">@ViewBag.Error</h5>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Movie_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Morning_ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Afternoon_ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Evening_ticket)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Morning_ticket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Afternoon_ticket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evening_ticket)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @using (Html.BeginForm("BookTicket", "Customer", FormMethod.Post))
+                {
+                    <input type="Number" name="people" placeholder="Enter no of Tickets" />
+                    @Html.DropDownList("Showno", new List<SelectListItem>() {new SelectListItem {Text="Morning",Value="Morning",Selected=true},
+                   new SelectListItem { Text = "Afternoon", Value = "Afternoon" },
+                   new SelectListItem { Text = "Evening", Value = "Evening" }
+               }
+             );
+                    <input type="hidden" name="Name" value=@item.SId />
+                    <input type="hidden" name="MId" value=@item.MId>
+                    <input type="submit" name="Submit" value="Submit" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BlackStoneMovies.Models.UserBooking>
+
+@{
+    ViewBag.Title = "BookTicket";
+}
+
+<h2>BookTicket</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.people)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Showno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.people)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Showno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Back to Movies", "GetMovies", "Customer", new { id = Convert.ToInt32(Session["Rid"]) })

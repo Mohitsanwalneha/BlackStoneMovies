@@ -32,6 +32,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.MProducer)
         </td>
+        <td> @Html.ActionLink("Shows", "GetAvailableShows",new { id=item.MId})
+               
+        </td>
     </tr>
 }
 

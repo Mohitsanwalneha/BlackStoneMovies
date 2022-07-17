@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b1079061b467423e9c823e00e21fbdb9" Name="Diagram1">
-        <EntityTypeShape EntityType="MoviesBookingModel.Booking" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MoviesBookingModel.Movy" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MoviesBookingModel.Role" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="22bdf179fa0348478eb4ed0b7218e73b" Name="Diagram1">
+        <EntityTypeShape EntityType="MoviesBookingModel.Booking" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesBookingModel.Movy" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesBookingModel.Role" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MoviesBookingModel.Show" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="MoviesBookingModel.FK__Booking__RId__20C1E124" ManuallyRouted="false" />
         <AssociationConnector Association="MoviesBookingModel.FK__Booking__SId__21B6055D" ManuallyRouted="false" />
