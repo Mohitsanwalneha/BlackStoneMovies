@@ -67,7 +67,7 @@ namespace BlackStoneMovies.Controllers
         {
             var query = from t1 in db.Bookings
                         from t2 in db.Shows
-                        where t1.RId==id
+                        where t1.RId==id && t2.SId==t1.SId
                         select new
                         {
                             Shows = t1.Rshow,
@@ -96,7 +96,7 @@ namespace BlackStoneMovies.Controllers
             Show q = db.Shows.Where(m => m.SId == b.SId).FirstOrDefault();
             if (b.Rshow == "Afternoon") {
                 q.AShow = q.AShow - b.RPeople;
-                if (q.AShow > 0)
+                if (q.AShow >= 0)
                 {
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
@@ -110,7 +110,7 @@ namespace BlackStoneMovies.Controllers
             else if (b.Rshow == "Morning")
             {
                 q.MShow = q.MShow - b.RPeople;
-                if (q.MShow > 0)
+                if (q.MShow >=0)
                 {
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
@@ -123,7 +123,7 @@ namespace BlackStoneMovies.Controllers
             else if (b.Rshow == "Evening")
             {
                 q.EShow = q.EShow - b.RPeople;
-                if (q.EShow > 0)
+                if (q.EShow >=0)
                 {
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();

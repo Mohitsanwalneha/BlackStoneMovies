@@ -66,6 +66,7 @@ namespace BlackStoneMovies.Controllers
             b.RId = Convert.ToInt32(Session["Rid"]);
             b.RPeople = so.people;
             b.Rshow = so.Showno;
+            
             b.SId =Convert.ToInt32(so.Name);
             client.BaseAddress = new Uri("http://localhost:63540/api/CustomerApi");
             var response = client.PostAsJsonAsync<Booking>("CustomerApi/BookingTicket",b);
@@ -78,7 +79,7 @@ namespace BlackStoneMovies.Controllers
             return RedirectToAction("GetAvailableShows","Customer",new { id = MId,Error="Please Check the data"});
             
         }
-        
+        [HttpGet]
         public ActionResult BookTicket()
         {
             if (Convert.ToString(Session["Role"]) != "Customer")
@@ -98,6 +99,13 @@ namespace BlackStoneMovies.Controllers
             }
             
             return View(s);   
+        }
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+            Session.RemoveAll();
+            return RedirectToAction("Login", "Admin");
         }
 
     }

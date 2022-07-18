@@ -3,10 +3,10 @@
 @{
     ViewBag.Title = "GetMovies";
 }
-
+<div style="float:right">@Html.ActionLink("Logout", "LogOut")</div>
 <h2>GetMovies</h2>
 
-
+<b>@Html.ActionLink("Show all Tickets", "BookTicket")</b>
 <table class="table">
     <tr>
         <th>
@@ -32,8 +32,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.MProducer)
         </td>
-        <td> @Html.ActionLink("Shows", "GetAvailableShows",new { id=item.MId})
-               
+        <td>
+            @Html.ActionLink("Shows", "GetAvailableShows", new { id = item.MId })
+           
+
         </td>
     </tr>
 }
