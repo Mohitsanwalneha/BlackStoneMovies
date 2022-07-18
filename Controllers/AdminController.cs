@@ -97,11 +97,19 @@ namespace BlackStoneMovies.Controllers
         }
         public ActionResult AddMovie()
         {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult AddMovie(Movy m)
         {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             if (!ModelState.IsValid)
             {
                 return View(m);
@@ -122,6 +130,10 @@ namespace BlackStoneMovies.Controllers
         [HttpGet]
         public ActionResult UpdateMovie(int id)
         {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             Movy e = null;
             client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
             var response = client.GetAsync("AdminApi/UpdateMovie?id=" + id.ToString());
@@ -139,6 +151,10 @@ namespace BlackStoneMovies.Controllers
         [HttpPost]
         public ActionResult UpdateMovie(Movy mo)
         {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
             var response = client.PutAsJsonAsync<Movy>("AdminApi/UpdateMovie", mo);
             response.Wait();
@@ -154,6 +170,10 @@ namespace BlackStoneMovies.Controllers
         [HttpGet]
         public ActionResult DeleteMovie(int id)
         {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             Movy e = null;
             client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
             var response = client.GetAsync("AdminApi/UpdateMovie?id=" + id.ToString());
@@ -170,6 +190,10 @@ namespace BlackStoneMovies.Controllers
         [HttpPost,ActionName("DeleteMovie")]
         public ActionResult ConfirmDelete(int id)
         {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
             client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
             var response = client.DeleteAsync("AdminApi/DeleteMovie/" + id.ToString());
             response.Wait();
