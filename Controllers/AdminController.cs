@@ -120,7 +120,7 @@ namespace BlackStoneMovies.Controllers
             var test = response.Result;
             if (test.IsSuccessStatusCode)
             {
-                return RedirectToAction("AllMovie");
+                return RedirectToAction("AllMovies");
             }
             else
                 ModelState.AddModelError(string.Empty, "Data already present please modify it");
@@ -205,5 +205,142 @@ namespace BlackStoneMovies.Controllers
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
             return View("DeleteMovie");
         }
+        public ActionResult AllShows(int id,string Error)
+        {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            List<GetShow> s = new List<GetShow>();
+            client.BaseAddress = new Uri("http://localhost:63540/api/CustomerApi");
+            var response = client.GetAsync("CustomerApi/GetShow?id=" + id.ToString());
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<List<GetShow>>();
+                display.Wait();
+                s = display.Result;
+            }
+            ViewBag.Error = Error;
+            ViewBag.MId = id;
+            Session["MId"] = id;
+            return View(s);         
+        }
+        [HttpGet]
+        public ActionResult AddShow(int MId)
+        {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddShow(Show so)
+        {
+            so.MId = Convert.ToInt32(Session["MId"]);
+            
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(so);
+            }
+            client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
+            var response = client.PostAsJsonAsync<Show>("AdminApi/AddShow", so);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AllShows",new { id=Convert.ToInt32(Session["MId"])});
+            }
+            else
+                ModelState.AddModelError(string.Empty, "Cannot Add the show pleace check!");
+            return View(so);
+        }
+        [HttpGet]
+        public ActionResult UpdateShow(int id)
+        {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            Show e = null;
+            client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
+            var response = client.GetAsync("AdminApi/UpdateShow?id=" + id.ToString());
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<Show>();
+                display.Wait();
+                e = display.Result;
+            }
+            return View(e);
+            
+        }
+        [HttpPost]
+        public ActionResult UpdateShow(Show so)
+        {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
+            var response = client.PutAsJsonAsync<Show>("AdminApi/UpdateShow", so);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AllShows", new {id=so.MId });
+            }
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+            return View(so);
+           
+        }
+        [HttpGet]
+        public ActionResult DeleteShow(int id)
+        {
+
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            Show e = null;
+            client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
+            var response = client.GetAsync("AdminApi/UpdateShow?id=" + id.ToString());
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<Show>();
+                display.Wait();
+                e = display.Result;
+            }
+            return View(e);
+        }
+        [HttpPost, ActionName("DeleteShow")]
+        public ActionResult ConfirmDeleteShow(int id)
+        {
+            if (Convert.ToString(Session["Role"]) != "Admin")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            client.BaseAddress = new Uri("http://localhost:63540/api/AdminApi");
+            var response = client.DeleteAsync("AdminApi/DeleteShow/" + id.ToString());
+            response.Wait();
+            var test = response.Result;
+            
+            if (test.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AllMovies");
+            }
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+            return View("DeleteShow");
+        }
+
     }
 }

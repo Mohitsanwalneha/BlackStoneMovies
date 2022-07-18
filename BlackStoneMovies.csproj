@@ -575,6 +575,10 @@
     <Content Include="Views\Admin\AddMovie.cshtml" />
     <Content Include="Views\Admin\UpdateMovie.cshtml" />
     <Content Include="Views\Admin\DeleteMovie.cshtml" />
+    <Content Include="Views\Admin\AllShows.cshtml" />
+    <Content Include="Views\Admin\AddShow.cshtml" />
+    <Content Include="Views\Admin\UpdateShow.cshtml" />
+    <Content Include="Views\Admin\DeleteShow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

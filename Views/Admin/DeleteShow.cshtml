@@ -1,0 +1,66 @@
+﻿@model BlackStoneMovies.Models.Show
+
+@{
+    ViewBag.Title = "DeleteShow";
+}
+
+<h2>DeleteShow</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Show</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MShow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MShow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AShow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AShow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EShow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EShow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mday)
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Movies", "AllMovies")
+        </div>
+    }
+</div>

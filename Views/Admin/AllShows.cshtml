@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BlackStoneMovies.Models.GetShow>
+
+@{
+    ViewBag.Title = "AllShows";
+    int id = ViewBag.MId;
+}
+
+<h2>AllShows</h2>
+
+<p>
+    @Html.ActionLink("Add New Show For Movie", "AddShow",new { MId=id})
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Movie_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Morning_ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Evening_ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Afternoon_ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Day)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Morning_ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Evening_ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Afternoon_ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateShow", new { id=item.SId }) |
+            @Html.ActionLink("Delete", "DeleteShow", new { id=item.SId })
+        </td>
+        
+    </tr>
+}
+
+</table>
+@Html.ActionLink("Back  to Allmovies", "AllMovies");
